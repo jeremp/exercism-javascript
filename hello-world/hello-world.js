@@ -6,10 +6,17 @@
 
 var HelloWorld = function() {};
 
+var helloStart = 'Hello, ';
+var helloEnd = '!';
+
 HelloWorld.prototype.hello = function(input) {
-//
-// YOUR CODE GOES HERE
-//
+
+    if(input){
+        return  helloStart + input + helloEnd ;         
+    }else{
+        return  helloStart + "World" + helloEnd ;
+    }
+
 };
 
 module.exports = HelloWorld;
