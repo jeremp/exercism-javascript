@@ -1,9 +1,9 @@
-var Clock = function(hours, minutes) {
-    this.hours = hours 
-    this.minutes = minutes
-}
+var Clock = function(h, m) {
 
-Clock.at = function(h,m){
+    // storing original values to easily perform plus
+    this.originalH = h ;
+    this.originalM = m ;
+
     console.log("\n------")
     console.log("h="+h+"  m="+m)
     /* m is not mandatory */
@@ -23,14 +23,21 @@ Clock.at = function(h,m){
     if(hours==24){
         hours=0
     }
-    hours = fixHours(hours)        
-    //console.log("h="+h+"  m="+m+"   hours="+hours+"   ")
+    hours = fixHours(hours)            
     let minutes = fixMinutes(m) ;
-    return new Clock(hours, minutes)
+
+
+    this.hours = hours 
+    this.minutes = minutes
+}
+
+Clock.at = function(h,m){
+    
+    return new Clock(h, m)
 }
 
 Clock.prototype.plus = function(nbMinutes){
-    return new Clock(this.hours, this.minutes+nbMinutes)
+    return new Clock(this.originalH, this.originalM+nbMinutes)
 }
 
 Clock.prototype.toString = function(){
