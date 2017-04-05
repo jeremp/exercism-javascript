@@ -29,6 +29,10 @@ Clock.at = function(h,m){
     return new Clock(hours, minutes)
 }
 
+Clock.prototype.plus = function(nbMinutes){
+    return new Clock(this.hours, this.minutes+nbMinutes)
+}
+
 Clock.prototype.toString = function(){
     return ('0' + this.hours).slice(-2)+':'+('0' + this.minutes).slice(-2)
 }
