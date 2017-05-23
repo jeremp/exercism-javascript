@@ -7,10 +7,16 @@ Octal.prototype.toDecimal = function(){
     var result = 0 ;    
     if(array && array.length>0){                
         for(var i=0 ; i<array.length ; i++){
-            var number = array[i];            
-            var numeric = parseInt(array[i]);            
+            var number = array[i];
+            //console.log(number+"->"+isNaN(number))
+            if(isNaN(number) || parseInt(number)>7){
+                // if we found an invalid char we return 0 ;
+                return 0 ;        
+            }
+            
+            var numeric = parseInt(number);            
             if(numeric>0){            
-                result += Math.pow(8, i);  ;
+                result += (numeric * Math.pow(8, i))  ;
             }
         }
     }
