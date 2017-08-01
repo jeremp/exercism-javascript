@@ -37,12 +37,29 @@ Crypto.prototype.size = function(){
 Crypto.prototype.plaintextSegments = function(){
     var res = []
     let size = this.size()
-    for (var index = 0; index < size-1; index++) {
+    for (var index = 0; index < size; index++) {
         let subStr = extractTextBlock(this.normalized, size, index)
-        //console.log("subStr = "+subStr)
-        res.push(subStr)         
+        if(subStr && subStr.trim().length>0){
+            res.push(subStr)
+        }
     }
     return res        
+}
+
+/**
+ * Fonction de cryptographie
+ */
+Crypto.prototype.ciphertext = function(){
+    let segments = this.plaintextSegments()
+    let result = ""
+    //console.log("time to cipher "+this.normalized+" so "+ this.plaintextSegments())
+    for (var index = 0; index < segments[0].length; index++) {           
+        for (var i = 0; i < segments.length; i++) {
+            //console.log("append "+segments[i].charAt(index))
+            result = result + segments[i].charAt(index)
+        }
+    }
+    return result
 }
 
 /**
